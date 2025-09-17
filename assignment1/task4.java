@@ -6,17 +6,14 @@ public class task4 {
         "", "one", "two", "three", "four", "five",
         "six", "seven", "eight", "nine"
     };
-
     private static final String[] teens = {
         "ten", "eleven", "twelve", "thirteen", "fourteen",
         "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
     };
-
     private static final String[] tens = {
         "", "", "twenty", "thirty", "forty",
         "fifty", "sixty", "seventy", "eighty", "ninety"
     };
-
     public static void main(String[] args) {
         try(Scanner sc = new Scanner(System.in)){
             int num;
@@ -28,7 +25,7 @@ public class task4 {
                 } else {
                     sc.next(); 
                 }
-                System.out.println("❌ Invalid input! Please enter a number between 1 and 1000.");
+                System.out.println("Invalid input! Please enter a number between 1 and 1000.");
             }
             String words = convertToWords(num);
             System.out.println("Number in words: " + words);

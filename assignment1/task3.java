@@ -1,3 +1,5 @@
+// To check a number is prime or not
+// Owner : Yadav Adarsh Ramesh
 import java.util.*;
 public class task3 {
     public static void main(String[] args){

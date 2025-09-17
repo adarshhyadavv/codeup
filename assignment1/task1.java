@@ -1,3 +1,5 @@
+// Expand Characters in a String 
+// Owner : Yadav Adarsh Ramesh
 import java.util.*;
 public class task1 {
     public static void main(String[] args){

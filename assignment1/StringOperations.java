@@ -5,46 +5,46 @@ import java.util.*;
 public class StringOperations {
     public static void main(String[] args){
         Scanner userInput=new Scanner(System.in);
-        System.out.println("Enter the operation you want to perform");
-        System.out.println("1.Expand Characters in a String");
-        System.out.println("2.Character Frequency in a String");
-        System.out.println("3.Prime Number Checker");
-        System.out.println("4.Number to Words Convertion");
-        System.out.println("5.finding length of longest Substring Without Repeating Characters");
-        System.out.print("Enter no between(1-5):");
+        System.out.print("""
+        Enter the operation you want to perform
+        1.Expand Characters in a String
+        2.Character Frequency in a String
+        3.Prime Number Checker
+        4.Number to Words Convertion
+        5.finding length of longest Substring Without Repeating Characters
+        """);
+        System.out.print("enter no between(1-5):");
         int opt=userInput.nextInt();
+        String inputAsk = (opt == 1|| opt == 2|| opt == 5)? "enter the string:" : "enter the number:";
+        System.out.print(inputAsk);
         userInput.nextLine();
         switch(opt){
-            case 1:            
-               System.out.print("enter the string:");
-               String s=userInput.nextLine();
-               System.out.println("your string is:"+ expand(s));
+            case 1:
+               String m = userInput.nextLine();            
+               System.out.println("your string is:"+ expand(m));
             break;
             case 2:
-               System.out.print("enter the string:");
-               String t=userInput.nextLine();
-               System.out.print("your frequency count is:"+frequencyCount(t));
+               String n = userInput.nextLine();
+               System.out.print("your frequency count is:"+frequencyCount(n));
             break;
             case 3:
-               System.out.print("enter the number:");
-               int n=userInput.nextInt();
-               System.out.println(checkPrime(n));
+               String num=userInput.nextLine();
+               System.out.println(checkPrime(num));
             break;
             case 4:
-               System.out.print("enter the number:");
-               int m=userInput.nextInt();
-               System.out.println(numberToWords(m));
+               int num2=userInput.nextInt();
+               System.out.println(numberToWords(num2));
             break;
             case 5:
-               System.out.print("enter the string:");
-               String r=userInput.nextLine();
-               System.out.println("length of longest substring:" + longestStringLenth(r));
+               String p=userInput.nextLine();
+               System.out.println("length of longest substring:" + longestStringLenth(p));
             break;   
             default:
                System.out.println("invalid input");                          
         }
         userInput.close();
     }
+    
     public static String expand(String s){
         int n=s.length()/2;
         String rev="";
@@ -56,6 +56,7 @@ public class StringOperations {
         }
         return rev;
     }
+    
     public static String frequencyCount(String s){
          String rev="";
         int count=1;
@@ -69,51 +70,49 @@ public class StringOperations {
         }
         return rev;
     }
-    public static String checkPrime(int n){
-        int cnt=0;
-        for(int i=1;i<=n;i++){
-            if(n%i==0)cnt++;
+    
+    public static String checkPrime(String n){
+        try{
+            long k=Long.parseLong(n);
+            long cnt=0;
+            for(long i=1;i*i<=k;i++){
+                if(k%i==0)cnt++;
+            }
+            String check = (cnt==2) ? "The given number is PRIME" : "The given number is NOT prime" ;
+            return check;
+        }catch (Exception e) {
+            return "invalid input provided";
         }
-        if(cnt==2)return "The given number is PRIME";
-        else return "The given number is NOT prime";
     }
+    
     public static String numberToWords(int num){
-           if(num < 1 || num > 999){
-        return "invalid input";
+        if(num < 1 || num > 999){
+            return "invalid input";
+        }
+        int a = num % 10;
+        int b = (num / 10) % 10;
+        int c = num / 100;
+        String sd[]={"","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+        String ty[]={"","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+        String result = "";
+        if(c > 0){
+            result += sd[c] + " hundred";
+            if(b > 0 || a > 0) result += " ";
+        }
+        int lastTwo = num % 100;
+        if(lastTwo < 20){
+            result += sd[lastTwo];
+        }else{
+            result += ty[b];
+            if(a > 0) result += " " + sd[a];
+        }
+        return result;
     }
-
-    int a = num % 10;          // ones
-    int b = (num / 10) % 10;   // tens
-    int c = num / 100;         // hundreds
-
-    String sd[]={"","one","two","three","four","five","six","seven","eight","nine","ten",
-                 "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen",
-                 "eighteen","nineteen"};
-
-    String ty[]={"","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
-
-    String result = "";
-
-    if(c > 0){
-        result += sd[c] + " hundred";
-        if(b > 0 || a > 0) result += " ";
-    }
-
-    int lastTwo = num % 100;
-    if(lastTwo < 20){
-        result += sd[lastTwo];
-    }else{
-        result += ty[b];
-        if(a > 0) result += " " + sd[a];
-    }
-
-    return result;
-          
-    }
+    
     public static int longestStringLenth(String s){
         int[] lastSeenAt = new int[256];
-        for (int idx = 0; idx < 256; idx++) {
-            lastSeenAt[idx] = -1;
+        for (int index = 0; index < 256; index++) {
+            lastSeenAt[index] = -1;
         }
 
         int maxLen = 0;

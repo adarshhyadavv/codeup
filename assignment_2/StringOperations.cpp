@@ -44,7 +44,6 @@ string replace(string inputString) {
     char oldChar, newChar;
     cout << "Enter character to replace: ";
     cin >> oldChar;
-    cin.ignore();
     cout << "Enter new character to insert: ";
     cin >> newChar;
     cin.ignore();
